@@ -102,3 +102,12 @@ for i in range(0, t):
         p.yearPasses()
     p.amIOld()
     print('')
+
+
+# loops
+N = int(raw_input().strip())
+
+i = 1
+for i in range(i, 11):
+    multiple = N * i
+    sys.stdout.write('%i x %i = %i \n' % (N, i, multiple))
