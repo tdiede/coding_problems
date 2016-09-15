@@ -12,10 +12,10 @@ i = 4
 d = 4.0
 s = 'HackerRank '
 
-# Declare second integer, double, and String variables.
-i2 = int()
-d2 = float()
-s2 = str()
+# # Declare second integer, double, and String variables.
+# i2 = int()
+# d2 = float()
+# s2 = str()
 
 # Read and save an integer, double, and String to your variables.
 print i
@@ -67,3 +67,38 @@ def conditional(n):
 conditional(N)
 
 
+# class vs. instance
+class Person:
+    def __init__(self, initialAge):
+        # Add some more code to run some checks on initialAge
+        if initialAge < 0:
+            self.age = 0
+            sys.stdout.write('Age is not valid, setting age to 0. \n')
+        else:
+            self.age = initialAge
+
+    def amIOld(self):
+        # Do some computations in here and print out the correct statement to the console
+        if self.age < 0:
+            sys.stdout.write('You are young. \n')
+        elif self.age < 13:
+            sys.stdout.write('You are young. \n')
+        elif self.age < 18:
+            sys.stdout.write('You are a teenager. \n')
+        else:
+            sys.stdout.write('You are old. \n')
+
+    def yearPasses(self):
+        # Increment the age of the person in here
+        self.age += 1
+
+
+t = int(raw_input())
+for i in range(0, t):
+    age = int(raw_input())
+    p = Person(age)
+    p.amIOld()
+    for j in range(0, 3):
+        p.yearPasses()
+    p.amIOld()
+    print('')
