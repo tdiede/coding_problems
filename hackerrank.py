@@ -123,8 +123,34 @@ for line in range(count):
 
 # arrays
 n = int(raw_input().strip())
-arr = map(int,raw_input().strip().split(' '))
+arr = map(int, raw_input().strip().split(' '))
 
 seq = ' '.join(map(str, arr[::-1]))
 
 sys.stdout.write('%s' % seq)
+
+
+# dictionaries/maps/hashmaps
+n = int(sys.stdin.readline())
+
+phonebook = {}
+
+i = 0
+for entry in range(i, n):
+    entry = sys.stdin.readline()
+    entry_item = entry.strip().split(' ')
+    phonebook[entry_item[0]] = entry_item[1]
+    # sys.stdout.write('%s' % phonebook)
+
+loop = True
+while loop is True:
+    query = sys.stdin.readline()
+    if query:
+        name = query.strip()
+        number = phonebook.get(name, 'Not found')
+        if name in phonebook:
+            sys.stdout.write('%s=%s \n' % (name, number))
+        else:
+            sys.stdout.write('%s \n' % (number))
+    else:
+        loop = False
