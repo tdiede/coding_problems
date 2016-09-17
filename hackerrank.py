@@ -119,3 +119,12 @@ count = int(sys.stdin.readline())
 for line in range(count):
     s = str(sys.stdin.readline()).strip()
     sys.stdout.write('%s %s \n' % ("".join(s[::2]), "".join(s[1::2])))
+
+
+# arrays
+n = int(raw_input().strip())
+arr = map(int,raw_input().strip().split(' '))
+
+seq = ' '.join(map(str, arr[::-1]))
+
+sys.stdout.write('%s' % seq)
