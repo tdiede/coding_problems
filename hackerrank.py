@@ -154,3 +154,14 @@ while loop is True:
             sys.stdout.write('%s \n' % (number))
     else:
         loop = False
+
+# recursion
+def factorial(n):
+    if n == 0:
+        return 1
+
+    return n * factorial(n-1)
+
+N = int(sys.stdin.readline())
+factorial = factorial(N)
+sys.stdout.write('%i' % factorial)
