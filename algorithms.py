@@ -1,35 +1,6 @@
 # These are the coding challenges I have worked through.
 
 
-def is_prime(num):
-    """Is a number a prime number?
-        >>> is_prime(0)
-        False
-
-        >>> is_prime(1)
-        False
-
-        >>> is_prime(2)
-        True
-
-        >>> is_prime(3)
-        True
-
-        >>> is_prime(4)
-        False
-
-        >>> is_prime(11)
-        True
-
-        >>> is_prime(999)
-        False
-    """
-
-    for i in range(1, num):
-        if num % 
-
-
-
 def fizzbuzz():
     """Count from 1 to 20 in fizzbuzz fashion.
         >>> fizzbuzz()
@@ -116,6 +87,8 @@ def concat_lists(list1, list2):
     return list1
 
 
+=======
+>>>>>>> fbcd4a73a275063c166f026347520731e52ebfe9
 def add_to_zero(nums):
     """Given list of ints, return True if any two nums in list sum to 0.
         >>> add_to_zero([])
