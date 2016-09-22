@@ -1,6 +1,75 @@
 # These are the coding challenges I have worked through.
 
 
+def is_prime(num):
+    """Is a number a prime number?
+        >>> is_prime(0)
+        False
+
+        >>> is_prime(1)
+        False
+
+        >>> is_prime(2)
+        True
+
+        >>> is_prime(3)
+        True
+
+        >>> is_prime(4)
+        False
+
+        >>> is_prime(11)
+        True
+
+        >>> is_prime(999)
+        False
+    """
+
+    for i in range(1, num):
+        if num % 
+
+
+
+def fizzbuzz():
+    """Count from 1 to 20 in fizzbuzz fashion.
+        >>> fizzbuzz()
+        1
+        2
+        fizz
+        4
+        buzz
+        fizz
+        7
+        8
+        fizz
+        buzz
+        11
+        fizz
+        13
+        14
+        fizzbuzz
+        16
+        17
+        fizz
+        19
+        buzz
+    """
+
+    i = 1
+    while i <= 20:
+        if (i % 3 == 0) and (i % 5 == 0):
+            print 'fizzbuzz'
+        elif (i % 3 == 0):
+            print 'fizz'
+        elif (i % 5 == 0):
+            print 'buzz'
+        else:
+            print i
+        i += 1
+
+fizzbuzz()
+
+
 def lucky_numbers(n):
     """Return n unique random numbers from 1-10 (inclusive).
         >>> lucky_numbers(2)
