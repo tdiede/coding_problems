@@ -1,21 +1,16 @@
 import sys
 
 
-# # basic read/write
+# # DAY 0: BASIC READ/WRITE
 # print 'enter text you want to echo.'
 # s = str(sys.stdin.readline())
 # sys.stdout.write(s)
 
 
-# # # data types
+# # DAY 1: DATA TYPES
 # i = 4
 # d = 4.0
 # s = 'HackerRank '
-
-# # # Declare second integer, double, and String variables.
-# # i2 = int()
-# # d2 = float()
-# # s2 = str()
 
 # # Read and save an integer, double, and String to your variables.
 # print i
@@ -37,6 +32,7 @@ import sys
 # sys.stdout.writelines('%s' % (s+s2))
 
 
+# # DAY 2: OPERATORS
 # # enter three lines: meal cost, tip % and tax %
 # print 'enter three lines: meal cost as float, tip and tax as integers percent.'
 # meal_cost = float(sys.stdin.readline())
@@ -48,9 +44,9 @@ import sys
 # sys.stdout.write('The total meal cost is %d dollars. \n' % round(total_cost))
 
 
+# # DAY 3: CONDITIONAL STATEMENTS
 # # performs a conditional operation on given integer input
 # N = int(raw_input('Enter an integer. >').strip())
-
 
 # def conditional(n):
 
@@ -67,7 +63,7 @@ import sys
 # conditional(N)
 
 
-# # class vs. instance
+# # DAY 4: CLASS VS. INSTANCE
 # class Person:
 #     def __init__(self, initialAge):
 #         # Add some more code to run some checks on initialAge
@@ -92,7 +88,6 @@ import sys
 #         # Increment the age of the person in here
 #         self.age += 1
 
-
 # t = int(raw_input())
 # for i in range(0, t):
 #     age = int(raw_input())
@@ -104,7 +99,7 @@ import sys
 #     print('')
 
 
-# # loops
+# # DAY 5: LOOPS
 # N = int(raw_input().strip())
 
 # i = 1
@@ -113,56 +108,78 @@ import sys
 #     sys.stdout.write('%i x %i = %i \n' % (N, i, multiple))
 
 
-# review loops (string)
-count = int(sys.stdin.readline())
+# # DAY 6: REVIEW
+# count = int(sys.stdin.readline())
 
-for line in range(count):
-    s = str(sys.stdin.readline()).strip()
-    sys.stdout.write('%s %s \n' % ("".join(s[::2]), "".join(s[1::2])))
-
-
-# arrays
-n = int(raw_input().strip())
-arr = map(int, raw_input().strip().split(' '))
-
-seq = ' '.join(map(str, arr[::-1]))
-
-sys.stdout.write('%s' % seq)
+# for line in range(count):
+#     s = str(sys.stdin.readline()).strip()
+#     sys.stdout.write('%s %s \n' % ("".join(s[::2]), "".join(s[1::2])))
 
 
-# dictionaries/maps/hashmaps
-n = int(sys.stdin.readline())
+# # DAY 7: ARRAYS
+# n = int(raw_input().strip())
+# arr = map(int, raw_input().strip().split(' '))
 
-phonebook = {}
+# seq = ' '.join(map(str, arr[::-1]))
 
-i = 0
-for entry in range(i, n):
-    entry = sys.stdin.readline()
-    entry_item = entry.strip().split(' ')
-    phonebook[entry_item[0]] = entry_item[1]
-    # sys.stdout.write('%s' % phonebook)
-
-loop = True
-while loop is True:
-    query = sys.stdin.readline()
-    if query:
-        name = query.strip()
-        number = phonebook.get(name, 'Not found')
-        if name in phonebook:
-            sys.stdout.write('%s=%s \n' % (name, number))
-        else:
-            sys.stdout.write('%s \n' % (number))
-    else:
-        loop = False
+# sys.stdout.write('%s' % seq)
 
 
-# recursion
-def factorial(n):
-    if n == 0:
-        return 1
+# # DAY 8: DICTIONARIES AND MAPS
+# n = int(sys.stdin.readline())
 
-    return n * factorial(n-1)
+# phonebook = {}
 
-N = int(sys.stdin.readline())
-factorial = factorial(N)
-sys.stdout.write('%i' % factorial)
+# i = 0
+# for entry in range(i, n):
+#     entry = sys.stdin.readline()
+#     entry_item = entry.strip().split(' ')
+#     phonebook[entry_item[0]] = entry_item[1]
+#     # sys.stdout.write('%s' % phonebook)
+
+# loop = True
+# while loop is True:
+#     query = sys.stdin.readline()
+#     if query:
+#         name = query.strip()
+#         number = phonebook.get(name, 'Not found')
+#         if name in phonebook:
+#             sys.stdout.write('%s=%s \n' % (name, number))
+#         else:
+#             sys.stdout.write('%s \n' % (number))
+#     else:
+#         loop = False
+
+
+# # DAY 9: RECURSION
+# def factorial(n):
+#     if n == 0:
+#         return 1
+
+#     return n * factorial(n-1)
+
+# N = int(sys.stdin.readline())
+# factorial = factorial(N)
+# sys.stdout.write('%i' % factorial)
+
+
+# # DAY 10: BINARY NUMBERS
+# n = int(raw_input().strip())
+
+# count = 0
+# max_count = 0
+
+# while(n > 0):
+#     if (n % 2 == 1):
+#         count += 1
+#         if count > max_count:
+#             max_count = count
+#         n = n/2
+#     else:
+#         count = 0
+#         n = n/2
+
+# sys.stdout.write('%i' % max_count)
+
+
+# # DAY 11: 2D ARRAYS
