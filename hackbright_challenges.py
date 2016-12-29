@@ -21,7 +21,8 @@
 #         >>> is_anagram_of_palindrome("arceaceb")
 #         False
 #     """
-
+#########################################################
+########################################################
 #     # want to count whether each letter appears an even number of times
 #     # one letter can appear an odd number of times
 
@@ -83,21 +84,134 @@
 #     return num_guesses
 
 
-# Count List Recursively
-# Count the number of items in a list using recursion.
 # Concepts: Recursion
+def count_recursively(lst):
+    """Return the number of items in a list, using recursion.
+        >>> count_recursively([])
+        0
 
-# Decode a String
-# Decode a string into the original text.
+        >>> count_recursively([1, 2, 3])
+        3
+    """
+
+    if not lst:
+        return 0
+
+    lst.pop()
+    return count_recursively(lst) + 1
+
+
 # Concepts: Loops
+def decode(s):
+    """Decode a string into the original text.
+        >>> decode("0h")
+        'h'
 
-# Missing Number
-# Find the missing number in a list.
+        >>> decode("2abh")
+        'h'
+
+        >>> decode("0h1ae2bcy")
+        'hey'
+    """
+
+    text = ''
+
+    for idx, char in enumerate(s):
+        if char.isdigit():
+            letter_index = idx + int(char) + 1
+            text += s[letter_index]
+
+    return text
+
+
 # Concepts: Runtime, General
+def missing_number_scan(nums, max_num):
+    """Find the missing number in a list.
 
-# Print Digits Backwards
-# Print digits of a number on backwards order.
+    *nums*: list of numbers 1..[max_num]; exactly one digit will be missing.
+    *max_num*: Largest potential number in list
+        >>> missing_number_scan([2, 1, 4, 3, 6, 5, 7, 10, 9], 10)
+        8
+        >>> missing_number_scan([2, 1, 4, 3, 6, 5, 7, 10, 9], 10)
+        8
+    """
+
+    # my initial solution has potentially terrible runtime!?!
+    temp_stack = set()
+    idx = 0
+
+    # O(n)
+    for idx in range(1, max_num+1):
+        temp_stack.add(idx)
+
+    # O(n) to create set from nums, plus O(n) to check between sets
+    diff = temp_stack - set(nums)
+    (missing,) = diff
+
+    return missing
+
+
+    # 1st solution, O(n) and requires additional storage:
+    # Keep track of what you've seen in a separate list, at False index is missing number.
+def missing_number_n_extralist(nums, max_num):
+
+    seen = [False] * max_num
+
+    for n in nums:
+        seen[n - 1] = True
+
+    return seen.index(False) + 1
+
+
+    # 2nd solution, O(n log n) and does not require additional storage:
+    # Sort list first, then scan for missing number.
+def missing_number_nlogn(nums, max_num):
+
+    nums.append(max_num + 1)
+    nums.sort()
+    last = 0
+
+    for num in nums:
+        if num != last + 1:
+            return last + 1
+        last += 1
+
+    raise Exception("None are missing!")
+
+
+    # 3rd solution: find missing number by comparing expected sum vs actual
+def missing_number_n(nums, max_num):
+
+    expected = sum(range(max_num + 1))
+
+    # sum of 1..n
+    # expected = ( n + 1 ) * ( n / 2 )
+
+    return expected - sum(nums)
+
+
 # Concepts: General, Math
+def print_digits(num):
+    """Given an integer, print digits in reverse order, starting with the ones place.
+        >>> print_digits(1)
+        1
+        >>> print_digits(314)
+        4
+        1
+        3
+        >>> print_digits(12)
+        2
+        1
+    """
+
+    number = str(num)
+
+    idx = -1
+
+    while abs(idx) <= len(number):
+        print number[idx]
+        idx += -1
+
 
 # Concepts: Recursion
 def print_recursively(lst):
@@ -112,8 +226,20 @@ def print_recursively(lst):
         print lst[0]
         print_recursively(lst[1:])
 
-
 print_recursively([1, 2, 3])
+
+
+# if idx also passed as argument to function...
+def print_recursive(lst, idx):
+
+    if idx == len(lst):
+        return
+
+    print_recursive(lst, idx+1)
+
+    print lst[idx],
+
+print_recursive([1, 2, 3], 0)
 
 
 # Concepts: Recursion
@@ -142,6 +268,11 @@ def recursive_index(needle, haystack):
 
     return _recursive_index(needle, haystack, 0)
 
+#########################################################
+########################################################
+
+
+
 
 # Remove Linked List Node
 # Remove a node from the start/middle of a linked list.
@@ -155,22 +286,53 @@ def recursive_index(needle, haystack):
 # Merge together two already-sorted lists.
 # Concepts: Loops, Sorting
 
+#########################################################
+########################################################
 
 # Concepts: Loops, Strings
 def split_string(string, delimiter):
     """Split a string on another, like the Python built-in split.
-        >>> x
+        >>> split_string("i love balloonicorn", " ")
+        ['i', 'love', 'balloonicorn']
+
+        >>> split_string("that is which is that which is that", " that ")
+        ['that is which is', 'which is that']
+
+        >>> split_string("that is which is that which is that", "that")
+        ['', ' is which is ', ' which is ', '']
+
+        >>> split_string("hello world", "nope")
+        ['hello world']
     """
 
-    out = []
-    prev = 0
+    # my initial solution, only works if delimiter is a single character
+    # split_string = []
+    # prev = 0
 
-    for idx, char in enumerate(string+delimiter):
-        if char == delimiter:
-            split_string.append(string[prev:idx])
-            prev = idx
+    # for idx, char in enumerate(string+delimiter):
+    #     if char == delimiter:
+    #         split_string.append(string[prev:idx])
+    #         prev = idx
 
-    # split_string.append(string[prev:])
+    # # split_string.append(string[prev:])
+
+    # return split_string
+
+    split_string = []
+    idx = 0
+
+    while idx <= len(string):
+
+        curr_idx = idx
+        idx = string.find(delimiter, idx)
+
+        if idx != -1:
+            split_string.append(string[curr_idx:idx])
+            idx += len(delimiter)
+
+        else:
+            split_string.append(string[curr_idx:])
+            break
 
     return split_string
 
@@ -396,6 +558,33 @@ def fizzbuzz():
 fizzbuzz()
 
 
+def find_range(nums):
+    """Given list of numbers, return smallest & largest number as a tuple.
+        >>> find_range([3, 4, 2, 5, 10])
+        (2, 10)
+
+        >>> find_range([43, 3, 44, 20, 2, 1, 100])
+        (1, 100)
+
+        >>> find_range([])
+        (None, None)
+
+        >>> find_range([7])
+        (7, 7)
+    """
+
+    min_current = None
+    max_current = None
+
+    for item in nums:
+        if min_current is None or item < min_current:
+            min_current = item
+        if max_current is None or item > max_current:
+            max_current = item
+
+    return min_current, max_current
+
+
 def lucky_numbers(n):
     """Return n unique random numbers from 1-10 (inclusive).
         # >>> lucky_numbers(2)
@@ -419,6 +608,75 @@ def lucky_numbers(n):
         lucky_nums.append(num)
 
     return lucky_nums
+
+
+def is_leap_year(year):
+    """Is this year a leap year?
+
+    Every 4 years is a leap year::
+        >>> is_leap_year(1904)
+        True
+
+    Except every hundred years::
+        >>> is_leap_year(1900)
+        False
+
+    Except-except every 400::
+        >>> is_leap_year(2000)
+        True
+    """
+
+    if year % 400 == 0:
+        return True
+
+    if year % 100 == 0:
+        return False
+
+    if year % 4 == 0:
+        return True
+
+
+def days_in_month(date):
+    """How many days are there in a month?
+        >>> for i in range(1, 13):
+        ...     date = str(i) + " 2016"
+        ...     print "%s has %s days." % (date, days_in_month(date))
+        1 2016 has 31 days.
+        2 2016 has 29 days.
+        3 2016 has 31 days.
+        4 2016 has 30 days.
+        5 2016 has 31 days.
+        6 2016 has 30 days.
+        7 2016 has 31 days.
+        8 2016 has 31 days.
+        9 2016 has 30 days.
+        10 2016 has 31 days.
+        11 2016 has 30 days.
+        12 2016 has 31 days.
+
+        >>> days_in_month("02 2015")
+        28
+    """
+
+    month, year = date.split(" ")
+    month = int(month)
+    year = int(year)
+
+    thirtyone = [1,3,5,7,8,10,12]
+    thirty = [4,6,9,11]
+
+    if month in thirtyone:
+        days = 31
+    elif month in thirty:
+        days = 30
+    else:
+        leap_year = is_leap_year(year)
+        if leap_year is True:
+            days = 29
+        else:
+            days = 28
+
+    return days
 
 
 def concat_lists(list1, list2):
